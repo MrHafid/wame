@@ -9,10 +9,9 @@ const { Client, Location, List, Buttons, LocalAuth} = require('whatsapp-web.js')
 
 global.client = new Client({
     authStrategy: new LocalAuth(),
-    puppeteer: { headless: false,
-        args: [
-        '--no-sandbox',
-    ], }
+    puppeteer: { headless: true,
+        args: ['--no-sandbox','--disable-setuid-sandbox']
+}
 });
 
 const app = express();
