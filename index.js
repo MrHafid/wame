@@ -32,11 +32,13 @@ client.on('loading_screen', (percent, message) => {
 
 client.on('qr', (qr) => {
     // NOTE: This event will not be fired if a session is specified.
-    qrcode.generate(qr, {small: true});
+    // qrcode.generate(qr, {small: true});
+    fs.writeFileSync("./components/last.qr", qr);
     console.log('QR RECEIVED', qr);
 });
 
 client.on('authenticated', () => {
+    fs.unlinkSync("./components/last.qr");
     console.log('AUTHENTICATED');
 });
 
