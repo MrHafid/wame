@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const axios = require("axios");
 const shelljs = require("shelljs");
+const qrcode = require('qrcode-terminal');
 
 const config = require("./config.json");
 const { Client, Location, List, Buttons, LocalAuth} = require('whatsapp-web.js');
@@ -31,6 +32,7 @@ client.on('loading_screen', (percent, message) => {
 
 client.on('qr', (qr) => {
     // NOTE: This event will not be fired if a session is specified.
+    qrcode.generate(qr, {small: true});
     console.log('QR RECEIVED', qr);
 });
 
